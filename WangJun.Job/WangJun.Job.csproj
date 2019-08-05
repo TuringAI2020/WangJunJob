@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MailJob.cs" />
     <Compile Include="WangJunJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +54,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\WangJunMail\WangJun.Mail\WangJun.Mail.csproj">
+      <Project>{a41f69d8-0e7a-4832-81e2-0280973ee1de}</Project>
+      <Name>WangJun.Mail</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\WangJunTuringAI2020\WangJun.Common\WangJun.Common.csproj">
       <Project>{d2fe513e-355e-44ba-96fe-844970cf960d}</Project>
       <Name>WangJun.Common</Name>

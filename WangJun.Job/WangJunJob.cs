@@ -20,14 +20,14 @@ namespace WangJun.Yun
             return inst;
         }
 
-        public RES StartJob(string jobName,string triggerName,int interval , int repeatCount)
+        public RES StartJob<T>(string jobName,string triggerName,int interval , int repeatCount) where T : IJob
         {
             try
             {
                  
                 var scheduler = this.factory.GetScheduler();
 
-                var jobDetail = JobBuilder.Create<WangJunJob>().WithIdentity(jobName).Build();
+                var jobDetail = JobBuilder.Create<T>().WithIdentity(jobName).Build();
                 var trigger = TriggerBuilder.Create().WithIdentity(triggerName).WithSimpleSchedule(p => p.WithIntervalInSeconds(interval).WithRepeatCount(repeatCount)).Build();
                 scheduler.Result.ScheduleJob(jobDetail, trigger);
                 scheduler.Result.Start();
@@ -53,7 +53,7 @@ namespace WangJun.Yun
             }
         }
 
-        public Task Execute(IJobExecutionContext context)
+        public virtual Task Execute(IJobExecutionContext context)
         {
             var task = new Task(() =>
             {
